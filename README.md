@@ -1,6 +1,6 @@
 # About
 
-This script will upload a file in a specific directory to your Google Drive Account. 
+This script will upload any file(s) in a specific directory to your Google Drive Account. Files/folders that are placed in the "/data" directory of your project will be uploaded to Google Drive. This script supports nested folders and subfolders as well.  
 
 # Setup
 1. Clone this repo. 
@@ -17,5 +17,5 @@ $ pip install --upgrade google-api-python-client google-auth-httplib2 google-aut
 # Future Improvements 
 
 1. Add support to specify **which directory** in Google Drive to save the files in.
-2. Add functionality to check if file with same name already exists on drive. Prompt user whether to overwrite or not. 
-3. Support upload of folders and nested folders
+2. Add functionality to check if file with same name already exists on drive. Prompt user whether to overwrite or not.
+3. Make a GUI for the app. 
