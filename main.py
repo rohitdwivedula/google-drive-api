@@ -21,7 +21,7 @@ for file in files:
 	file_metadata = {'name': file}
 	media = MediaFileUpload(path, resumable=True)
 	file = drive_service.files().create(body=file_metadata, media_body = media, fields='id').execute()
-	print("File ID is " + file.get('id'));
+	print("\n" + file + " Uploaded." + "\nFile ID is " + file.get('id') + "\n");
 
 a = input("Delete local copies? (Y/N)    ")
 if a == 'y' or a == 'Y':
