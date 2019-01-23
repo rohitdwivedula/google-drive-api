@@ -5,11 +5,8 @@ from apiclient.http import MediaFileUpload
 from googleapiclient.discovery import build
 from shutil import rmtree
 
-# creating a drive service connection 
-if os.path.exists('token.pickle'):
-	with open('token.pickle', 'rb') as token:
-		creds = pickle.load(token)
-drive_service = build('drive', 'v3', credentials=creds)
+# Global variable to store drive service
+drive_service = None
 
 def main():	
 	# if directory empty, do nothing
@@ -17,6 +14,18 @@ def main():
 	if not files:
 		print("Nothing to upload")
 		quit()
+
+	# creating a drive service connection 
+	global drive_service
+	if os.path.exists('token.pickle'):
+		with open('token.pickle', 'rb') as token:
+			creds = pickle.load(token)
+		drive_service = build('drive', 'v3', credentials=creds)
+	else:
+		print("Credentials not found.\nPossible error with authentication flow. Exiting...")
+		quit()
+
+	# upload local files
 	for file in files:
 		path = "./data/" + file
 		if os.path.isfile(path):
@@ -31,6 +40,7 @@ def main():
 			print("Instance: " + os.path.abspath(file))
 		else:
 			print("FATAL ERROR")
+
 	# delete local files
 	a = input("Delete ALL local copies? (Y/N)\t")
 	if a == 'y' or a == 'Y':
